@@ -5,6 +5,7 @@ import NewsCard from '../components/NewsCard'
 import ArticleModal from '../components/ArticleModal'
 import usePakistaniNews from '../hooks/usePakistaniNews'
 import { stories as fallbackStories } from '../data'
+import articleStore from '../store/articleStore'
 
 export default function Home() {
   usePageMeta(
@@ -14,6 +15,7 @@ export default function Home() {
 
   const [activeArticle, setActiveArticle] = useState(null)
   const { news: liveNews, loading } = usePakistaniNews({ number: 12 })
+  const publishedArticles = articleStore.getPublished()
 
   // Use real news from World News API, or high-quality fallbacks if still connecting
   const allNews = liveNews && liveNews.length > 0 ? liveNews : fallbackStories
@@ -144,6 +146,50 @@ export default function Home() {
                   article={article}
                   onSelect={(a) => setActiveArticle(a)}
                 />
+              ))}
+            </div>
+          </section>
+        )}
+
+        {/* Published Editorial & Author Articles */}
+        {publishedArticles.length > 0 && (
+          <section className="sec">
+            <div className="sec-divider"></div>
+            <div className="sh">
+              <div className="sh-left">
+                <span className="sh-glow-bar"></span>
+                <h2>PUBLISHED ARTICLES &amp; EDITORIALS</h2>
+              </div>
+              <Link className="sh-action" to="/submit">
+                <span>SUBMIT AN ARTICLE</span>
+                <span>→</span>
+              </Link>
+            </div>
+
+            <div className="category-articles-grid" style={{ marginTop: '1.5rem' }}>
+              {publishedArticles.map(article => (
+                <Link key={article.id} to={`/article/${article.id}`} className="category-article-card">
+                  {article.image && (
+                    <div className="category-card-image-wrap">
+                      <img src={article.image} alt={article.title} className="category-card-image" loading="lazy" />
+                    </div>
+                  )}
+                  <div className="category-card-content">
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 4 }}>
+                      <span className="news-cat" style={{ fontSize: '11px' }}>{article.category}</span>
+                      <span style={{ fontSize: '11px', color: 'var(--mute)' }}>
+                        {article.publishedAt ? new Date(article.publishedAt).toLocaleDateString('en-PK', { day: 'numeric', month: 'short' }) : 'Recent'}
+                      </span>
+                    </div>
+                    <h3 className="category-card-title">{article.title}</h3>
+                    <div className="category-card-meta">
+                      <span>By {article.author}</span>
+                    </div>
+                    <p className="category-card-excerpt">
+                      {article.content?.replace(/<[^>]*>/g, '').slice(0, 110) + '…'}
+                    </p>
+                  </div>
+                </Link>
               ))}
             </div>
           </section>

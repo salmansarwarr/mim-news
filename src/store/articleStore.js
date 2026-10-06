@@ -94,21 +94,99 @@ const SEED_ARTICLES = [
     adminNotes: '',
   },
   {
-    id: 'pending-demo',
+    id: 'pending-1',
     status: 'pending',
     title: 'Local Automakers Call for Tariff Reinstatement on Used Car Imports',
     category: 'Business & Trade',
     author: 'Kalbe Ali',
     email: 'kalbe.ali@example.com',
-    bio: 'Senior business reporter covering manufacturing and trade policy.',
+    bio: 'Senior business reporter covering manufacturing, logistics, and trade policy.',
     image: 'https://images.unsplash.com/photo-1502877338535-766e1452684a?w=800&q=80',
     content: `<p>Pakistan's local automobile manufacturers have formally appealed to the Ministry of Commerce requesting the reinstatement of tariff protections on imported used vehicles, citing a sharp and sudden spike in used car imports that followed regulatory changes in late 2025.</p>
-<p>The Pakistan Automotive Manufacturers Association (PAMA) submitted a 47-page petition arguing that the current import surge threatens an industry employing over 1.8 million workers across the supply chain.</p>
+<p>The Pakistan Automotive Manufacturers Association (PAMA) submitted a 47-page petition arguing that the current import surge threatens an industry employing over 1.8 million workers across the domestic supply chain.</p>
 <h2>Industry Concerns</h2>
 <p>PAMA's chairman stated that used car imports in September 2026 were 340% higher than the same month in 2025, with the majority of vehicles arriving from Japan and the UAE. "This is not healthy competition — it's an asymmetric shock," he told reporters outside the Ministry of Commerce in Islamabad.</p>`,
     publishedAt: null,
     submittedAt: new Date(Date.now() - 3 * 60 * 60 * 1000).toISOString(),
     adminNotes: '',
+  },
+  {
+    id: 'pending-2',
+    status: 'pending',
+    title: 'University of Karachi Team Develops Breakthrough Urdu Natural Language Processing Model',
+    category: 'Technology',
+    author: 'Dr. Fatima Noor',
+    email: 'fatima.noor@uok.edu.pk',
+    bio: 'Associate Professor of Computer Science specializing in Computational Linguistics and AI.',
+    image: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=800&q=80',
+    content: `<p>A team of researchers at the University of Karachi's Department of Computer Science has open-sourced <strong>UrduLM-v2</strong>, a 7-billion parameter language model trained exclusively on standardized Urdu literature, legal statutes, and public media corpora.</p>
+<p>The model sets new benchmark records for Urdu sentiment analysis, syntactic parsing, and machine translation, outperforming multilingual base models while operating with 60% less compute overhead.</p>
+<h2>Practical Applications</h2>
+<p>Dr. Noor noted that the model will be freely accessible to developers building automated government citizen portals, judicial transcription software, and educational tools across the country.</p>`,
+    publishedAt: null,
+    submittedAt: new Date(Date.now() - 6 * 60 * 60 * 1000).toISOString(),
+    adminNotes: '',
+  },
+  {
+    id: 'pending-3',
+    status: 'pending',
+    title: 'Sindh Healthcare Commission Mandates Digital Health Records for Karachi Hospitals',
+    category: 'Health',
+    author: 'Dr. Tariq Jameel Siddiqui',
+    email: 'tariq.siddiqui@healthjournal.pk',
+    bio: 'Public health analyst and medical journalist based in Karachi.',
+    image: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=800&q=80',
+    content: `<p>The Sindh Healthcare Commission (SHCC) has issued an official directive requiring all tertiary care hospitals and diagnostic laboratories in the Karachi division to integrate unified Electronic Health Record (EHR) systems by the second quarter of 2027.</p>
+<p>The regulation aims to reduce diagnostic redundancies, eliminate prescription errors, and provide seamless emergency patient history sharing between public civil hospitals and private healthcare networks.</p>`,
+    publishedAt: null,
+    submittedAt: new Date(Date.now() - 12 * 60 * 60 * 1000).toISOString(),
+    adminNotes: '',
+  },
+  {
+    id: 'approved-1',
+    status: 'approved',
+    title: 'Balochistan Coastal Highway Modernization Project Commences Next Month',
+    category: 'Karachi Metro',
+    author: 'Mirza Zafar',
+    email: 'm.zafar@infrastructure.pk',
+    bio: 'Civil engineering correspondent reporting on federal transport corridors.',
+    image: 'https://images.unsplash.com/photo-1545459720-aac8509eb02c?w=800&q=80',
+    content: `<p>The National Highway Authority (NHA) has finalized procurement for the dualization and modernization of the Makran Coastal Highway segment connecting Karachi with Gwadar Port City.</p>
+<p>Approved with an allocated expenditure of PKR 62 billion, the multi-year project includes new smart monitoring stations, heavy vehicle bypass loops, and climate-resilient culverts designed to withstand coastal flooding.</p>
+<h2>Timeline and Milestones</h2>
+<p>Contractors are expected to mobilize ground equipment by early next month, with the initial 80-kilometer bypass corridor slated for completion within 14 calendar months.</p>`,
+    publishedAt: null,
+    submittedAt: new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString(),
+    adminNotes: '',
+  },
+  {
+    id: 'approved-2',
+    status: 'approved',
+    title: 'State Bank of Pakistan Maintains Benchmark Interest Rate at 11% Amid Disinflation',
+    category: 'Business & Trade',
+    author: 'Ayesha Raza',
+    email: 'ayesha.raza@financetimes.pk',
+    bio: 'Central bank and macroeconomic reporter with over a decade of financial journalism experience.',
+    image: 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&q=80',
+    content: `<p>The Monetary Policy Committee (MPC) of the State Bank of Pakistan decided to maintain the policy rate unchanged at 11 percent, citing continued consolidation in consumer price indices and strengthening foreign exchange reserves.</p>
+<p>Governor SBP emphasized that while core inflation has demonstrated steady moderation, external fuel price volatility necessitates a measured, forward-looking stance on monetary easing.</p>`,
+    publishedAt: null,
+    submittedAt: new Date(Date.now() - 36 * 60 * 60 * 1000).toISOString(),
+    adminNotes: '',
+  },
+  {
+    id: 'rejected-1',
+    status: 'rejected',
+    title: 'Unverified Rumors Regarding National Currency Revaluation Circulate on Social Media',
+    category: 'Business & Trade',
+    author: 'Anonymous Contributor',
+    email: 'tipster99@fastmail.com',
+    bio: 'Independent financial blogger.',
+    image: 'https://images.unsplash.com/photo-1580519542036-c47de6196ba5?w=800&q=80',
+    content: `<p>Unconfirmed claims circulating on messaging platforms suggest the State Bank is planning an overnight re-denomination of the Pakistani Rupee. Sources claim new banknotes are already printed and held in reserve vaults awaiting an imminent decree.</p>`,
+    publishedAt: null,
+    submittedAt: new Date(Date.now() - 48 * 60 * 60 * 1000).toISOString(),
+    adminNotes: 'Rejected due to violation of verification standards: The article makes sensational currency claims without official SBP attribution or verified primary documentation. Resubmission requires named institutional sourcing.',
   },
 ]
 
@@ -206,6 +284,17 @@ export const articleStore = {
   delete(id) {
     const articles = initStore().filter(a => a.id !== id)
     saveStore(articles)
+  },
+
+  /** Reset store to default seed sample data */
+  resetStore() {
+    saveStore(SEED_ARTICLES)
+    return SEED_ARTICLES
+  },
+
+  /** Get raw seed articles list */
+  getSeedData() {
+    return SEED_ARTICLES
   },
 }
 

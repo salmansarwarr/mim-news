@@ -154,6 +154,37 @@ function ArticleDetailModal({ article, onClose, onRefresh }) {
             </div>
           )}
 
+          {/* Status explanation & direct action helper */}
+          {st === 'approved' && (
+            <div style={{ background: 'rgba(59, 130, 246, 0.12)', border: '1px solid rgba(59, 130, 246, 0.35)', borderRadius: '8px', padding: '12px 16px', fontSize: '13px', color: '#93c5fd', margin: '14px 0', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '12px' }}>
+              <div>
+                ℹ️ <strong>Status: Approved (Staged)</strong><br />
+                This article has passed editorial review. Click <strong>"🌐 Publish"</strong> below to make it visible on the Homepage, Category pages, and live URL.
+              </div>
+              <button className="btn-publish btn-sm" onClick={handlePublish} style={{ whiteSpace: 'nowrap' }}>
+                🌐 Publish Now
+              </button>
+            </div>
+          )}
+
+          {st === 'published' && (
+            <div style={{ background: 'rgba(34, 197, 94, 0.12)', border: '1px solid rgba(34, 197, 94, 0.35)', borderRadius: '8px', padding: '12px 16px', fontSize: '13px', color: '#86efac', margin: '14px 0', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '12px' }}>
+              <div>
+                ✅ <strong>Status: Live on Website</strong><br />
+                Published at {formatDate(currentArticle.publishedAt)}. Visible to all readers.
+              </div>
+              <Link to={`/article/${currentArticle.id}`} target="_blank" className="btn-secondary btn-sm" style={{ whiteSpace: 'nowrap', display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
+                🔗 View on Website ↗
+              </Link>
+            </div>
+          )}
+
+          {st === 'pending' && (
+            <div style={{ background: 'rgba(234, 179, 8, 0.1)', border: '1px solid rgba(234, 179, 8, 0.3)', borderRadius: '8px', padding: '10px 14px', fontSize: '13px', color: '#fde047', margin: '14px 0' }}>
+              ⏳ <strong>Status: Pending Review</strong> — Submitted by author. You can review the content, edit details, and Approve or Reject.
+            </div>
+          )}
+
           {/* Featured Image */}
           {currentArticle.image && !editing && (
             <div className="admin-article-image-wrap">
@@ -360,6 +391,18 @@ export default function AdminPanel() {
           </div>
         </div>
         <div className="admin-topbar-actions">
+          <button
+            className="btn-secondary btn-sm"
+            onClick={() => {
+              if (window.confirm('Reset all article data back to the default sample dataset?')) {
+                articleStore.resetStore()
+                refresh()
+              }
+            }}
+            title="Reload full sample dataset with Pending, Approved, Rejected, and Published articles"
+          >
+            🔄 Reset Sample Data
+          </button>
           <Link to="/" className="btn-secondary btn-sm" target="_blank">🌐 View Site</Link>
           <Link to="/submit" className="btn-secondary btn-sm" target="_blank">📝 Submit Form</Link>
           <button className="btn-logout" onClick={logout}>Sign Out</button>

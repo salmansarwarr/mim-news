@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import usePageMeta from '../components/usePageMeta'
 import articleStore from '../store/articleStore'
 
@@ -18,6 +18,12 @@ const CATEGORIES = [
 // ─── Simple Rich Text Editor Toolbar ─────────────────────────────────────────
 function RichTextEditor({ value, onChange }) {
   const editorRef = useRef(null)
+
+  useEffect(() => {
+    if (editorRef.current && value !== editorRef.current.innerHTML) {
+      editorRef.current.innerHTML = value || ''
+    }
+  }, [value])
 
   function execCmd(cmd, val = null) {
     editorRef.current?.focus()
@@ -57,7 +63,6 @@ function RichTextEditor({ value, onChange }) {
         aria-multiline="true"
         role="textbox"
         data-placeholder="Write your article here... Use the toolbar above to format headings, bold text, and lists."
-        dangerouslySetInnerHTML={value ? undefined : undefined}
       />
     </div>
   )
@@ -203,6 +208,34 @@ export default function Submit() {
     )
   }
 
+  const sampleArticles = [
+    {
+      author: 'Zainab Qureshi',
+      email: 'zainab.qureshi@techtimes.pk',
+      bio: 'Technology analyst exploring South Asian digital economies and software exports.',
+      title: 'Pakistan Software Export Board Reports 32% Year-on-Year Growth in IT Services',
+      category: 'Technology',
+      image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&q=80',
+      content: `<p>The Pakistan Software Export Board (PSEB) has released its latest quarterly report indicating that IT and software service remittances expanded by 32% year-on-year, propelled by growing cloud infrastructure migrations and freelance engineering talent across major urban centers.</p><h2>Export Drivers</h2><p>Industry stakeholders attribute the performance to targeted tax facilitation, high-speed fiber expansions into secondary tier cities, and an influx of international remote contracts across fintech and AI domains.</p><p>The Ministry of IT emphasized that ongoing specialized skills training programs will continue to prepare over 50,000 university graduates for global markets annually.</p>`,
+    },
+    {
+      author: 'Shahid Mehmood',
+      email: 'shahid.mehmood@agriwatch.pk',
+      bio: 'Agricultural journalist and rural economic researcher.',
+      title: 'Sindh Farmers Adopt Drip Irrigation Systems to Counter Seasonal Water Scarcity',
+      category: 'Environment',
+      image: 'https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=800&q=80',
+      content: `<p>Progressive growers in Lower Sindh have begun deploying solar-assisted drip irrigation networks across 12,000 hectares of cotton and sugarcane cultivation, achieving a 45% reduction in groundwater extraction compared to conventional flood methods.</p><h2>Water Conservation Impact</h2><p>Provincial agriculture officers noted that localized water metering and precision sensors have maintained crop yields while buffering farmers against erratic canal rotations.</p><p>Subsidized equipment financing from regional development banks has accelerated adoption among smallholder cooperatives.</p>`,
+    },
+  ]
+
+  function fillSample(idx = 0) {
+    const sample = sampleArticles[idx % sampleArticles.length]
+    setForm(sample)
+    setImagePreview(sample.image)
+    setErrors({})
+  }
+
   // ─── Submission Form ────────────────────────────────────────────────────────
   return (
     <div className="w submit-page">
@@ -217,6 +250,24 @@ export default function Submit() {
           Share your reporting, analysis, or opinion with MIM News readers. All submissions go through
           our editorial review process before publication.
         </p>
+        <div style={{ marginTop: '1rem', display: 'flex', gap: '0.75rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+          <button
+            type="button"
+            className="btn-secondary btn-sm"
+            onClick={() => fillSample(0)}
+            title="Auto-fill form with a sample Technology article"
+          >
+            ⚡ Auto-fill Tech Sample
+          </button>
+          <button
+            type="button"
+            className="btn-secondary btn-sm"
+            onClick={() => fillSample(1)}
+            title="Auto-fill form with a sample Environment article"
+          >
+            ⚡ Auto-fill Agri/Environment Sample
+          </button>
+        </div>
       </div>
 
       <div className="submit-layout">
