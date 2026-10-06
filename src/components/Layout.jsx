@@ -11,8 +11,9 @@ const FALLBACK_ITEMS = [
 const LINKS = [
   ['/', 'Home', '01'],
   ['/news', 'Daily News', '02'],
-  ['/about', 'About', '03'],
-  ['/contact', 'Contact', '04'],
+  ['/submit', 'Submit Article', '03'],
+  ['/about', 'About', '04'],
+  ['/contact', 'Contact', '05'],
 ]
 
 export default function Layout() {
@@ -151,6 +152,7 @@ export default function Layout() {
             {LINKS.map(([to, label]) => (
               <Link key={to} to={to}>{label}</Link>
             ))}
+            <Link to="/admin" style={{ opacity: 0.55, fontSize: 12 }}>Admin</Link>
           </div>
         </div>
       </footer>
