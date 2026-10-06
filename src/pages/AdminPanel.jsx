@@ -541,10 +541,32 @@ export default function AdminPanel() {
                             </button>
                           )}
                           {st === 'published' && (
-                            <Link to={`/article/${article.id}`} target="_blank" className="btn-table-action btn-table-view">
-                              View
-                            </Link>
+                            <>
+                              <button
+                                className="btn-table-action"
+                                onClick={() => { articleStore.unpublish(article.id); refresh() }}
+                                title="Unpublish article (moves back to approved staging)"
+                              >
+                                Unpublish
+                              </button>
+                              <Link to={`/article/${article.id}`} target="_blank" className="btn-table-action btn-table-view" title="Open live article">
+                                View ↗
+                              </Link>
+                            </>
                           )}
+                          <button
+                            className="btn-table-action btn-table-reject"
+                            onClick={() => {
+                              if (window.confirm(`Permanently delete "${article.title}"? This cannot be undone.`)) {
+                                articleStore.delete(article.id)
+                                refresh()
+                              }
+                            }}
+                            title="Delete article"
+                            style={{ opacity: 0.7 }}
+                          >
+                            🗑
+                          </button>
                         </div>
                       </td>
                     </tr>
